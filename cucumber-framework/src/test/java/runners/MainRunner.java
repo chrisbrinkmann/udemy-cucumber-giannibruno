@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/java/com/brink/cucu/features",
+@CucumberOptions(features = "src/test/resources/features",
 		glue = "com.brink.cucu.steps", monochrome = true, tags = {"@test1"},
 		plugin = { "pretty",
 				"html:target/cucumber",

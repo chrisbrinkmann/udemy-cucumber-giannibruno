@@ -2,32 +2,18 @@ package com.brink.cucu.steps;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import util.DriverFactory;
 
 
-public class LoginSteps {
-	
-	private WebDriver driver;
-	
-	@Before()
-	public void setup() {
-		System.setProperty("webdriver.gecko.driver", "D:\\dev\\udemy\\selenium\\bruno\\cucumber-framework\\src\\test\\java\\resources\\webdrivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().window().maximize();
-	}
-	
-	@After()
-	public void tearDown() {
-		driver.close();
-	}
+public class LoginSteps extends DriverFactory {
+	private WebDriverWait wait = new WebDriverWait(driver, 5);
 	
 	@Given("^user navigates to website2$")
 	public void user_navigates_to_website2() throws Throwable {
@@ -41,7 +27,8 @@ public class LoginSteps {
 
 	@Given("^user clicks homepage login button$")
 	public void user_clicks_homepage_login_button() throws Throwable {
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//a[contains(text(), 'Log in')]"))));
+		
 		// dynamic xpath // - search whole doc, a[contains(<type>, '<text>')] - for a link conatining <text>...
 	    driver.findElement(By.xpath("//a[contains(text(), 'Log in')]")).click();
 	}
@@ -55,7 +42,7 @@ public class LoginSteps {
 
 	@Then("^user should be taken to successful login page$")
 	public void user_should_be_taken_to_successful_login_page() throws Throwable {
-	    Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id=\"mainbar\"]/div[1]/div/a"))));
 		
 		WebElement askQuestionsButton = driver.findElement(By.xpath("//*[@id=\"mainbar\"]/div[1]/div/a"));
 	

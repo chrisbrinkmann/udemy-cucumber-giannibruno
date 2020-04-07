@@ -6,7 +6,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/java/com/brink/cucu/features",
+@CucumberOptions(features = "src/test/resources/features",
 		glue = "com.brink.cucu.steps", monochrome = true, tags = {"@staging"},
 		plugin = { "pretty",
 				"html:target/cucumber",
