@@ -29,6 +29,11 @@ public class LoginSteps {
 		driver.close();
 	}
 	
+	@Given("^user navigates to website2$")
+	public void user_navigates_to_website2() throws Throwable {
+	    System.out.println("SECOND TEST!!!");
+	}
+	
 	@Given("^user navigates to website$")
 	public void user_navigates_to_website() throws Throwable {
 	    driver.get("https://stackoverflow.com");
